@@ -85,6 +85,23 @@ func tarin(words []string) []string {
 	return ans
 }
 
+func ArabicToPersian(words []string) []string {
+	m := map[rune]rune{'ك': 'ک', 'ى': 'ی', 'ي': 'ی'}
+	ans := make([]string, 0)
+	for _, word := range words {
+		runes := []rune(word)
+		for i, r := range runes{
+			p, ok := m[r]
+			if ok{
+				runes[i] = p
+			}
+		}
+		ans = append(ans, string(runes))
+	}
+	//	ends = ['ات', 'ان', 'ترین', 'تر', 'م', 'ت', 'ش', 'یی', 'ی', 'ها', 'ٔ', '‌ا',]
+	return ans
+}
+
 func Normalize(word string) []string {
 	return tarin(ha(singleChar(number(zeroWidth(punctuation(word))))))
 }
