@@ -71,6 +71,7 @@ func tarin(words []string) []string {
 		// ترین
 		runes := []rune(word)
 		if len(runes) < 4 {
+			ans = append(ans, word)
 			continue
 		}
 		if string(runes[len(runes)-4:]) == "ترین" {
@@ -98,10 +99,13 @@ func ArabicToPersian(words []string) []string {
 		}
 		ans = append(ans, string(runes))
 	}
-	//	ends = ['ات', 'ان', 'ترین', 'تر', 'م', 'ت', 'ش', 'یی', 'ی', 'ها', 'ٔ', '‌ا',]
 	return ans
 }
 
 func Normalize(word string) []string {
 	return tarin(ha(singleChar(number(zeroWidth(punctuation(word))))))
 }
+
+//func Frequent(word string) bool {
+//	frequents := map[string]bool{"برای": true}
+//}
