@@ -86,7 +86,7 @@ func tarin(words []string) []string {
 	return ans
 }
 
-func ArabicToPersian(words []string) []string {
+func arabicToPersian(words []string) []string {
 	m := map[rune]rune{'ك': 'ک', 'ى': 'ی', 'ي': 'ی'}
 	ans := make([]string, 0)
 	for _, word := range words {
@@ -103,7 +103,7 @@ func ArabicToPersian(words []string) []string {
 }
 
 func Normalize(word string) []string {
-	return tarin(ha(singleChar(number(zeroWidth(punctuation(word))))))
+	return tarin(ha(arabicToPersian(singleChar(number(zeroWidth(punctuation(word)))))))
 }
 
 //func Frequent(word string) bool {
