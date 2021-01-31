@@ -91,9 +91,9 @@ func arabicToPersian(words []string) []string {
 	ans := make([]string, 0)
 	for _, word := range words {
 		runes := []rune(word)
-		for i, r := range runes{
+		for i, r := range runes {
 			p, ok := m[r]
-			if ok{
+			if ok {
 				runes[i] = p
 			}
 		}
@@ -102,10 +102,25 @@ func arabicToPersian(words []string) []string {
 	return ans
 }
 
+//func stem(words []string) []string {
+//
+//}
+
 func Normalize(word string) []string {
-	return tarin(ha(arabicToPersian(singleChar(number(zeroWidth(punctuation(word)))))))
+	return frequent(tarin(ha(arabicToPersian(singleChar(number(zeroWidth(punctuation(word))))))))
 }
 
-//func Frequent(word string) bool {
-//	frequents := map[string]bool{"برای": true}
-//}
+func frequent(words []string) []string {
+	frequents := map[string]bool{"برای": true, "آن": true, "از": true, "است": true, "این": true, "با": true, "بر": true,
+		"به": true, "بود": true, "تا": true, "در": true, "را": true, "شد": true, "کرد": true, "که": true}
+
+	ans := make([]string, 0)
+	for _, word := range words {
+		isFrequent := frequents[word]
+		if !isFrequent {
+			ans = append(ans, word)
+		}
+	}
+
+	return ans
+}
